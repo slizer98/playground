@@ -128,4 +128,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth redirects
 LOGIN_REDIRECT_URL = 'pages:pages'
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/'
+
+# Emails
+if DEBUG:
+  EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+  EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
+else:
+  # configurar email real para produccion
+  pass

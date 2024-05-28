@@ -45,7 +45,7 @@
                   </a>
                 </li>
               {% else %}
-                <form method="POST" action="{% url 'admin:logout' %}">
+                <form method="POST" action="{% url 'logout' %}">
                   {% csrf_token %}
                   <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
                 </form>
