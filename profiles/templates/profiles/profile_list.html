@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Perfiles{% endblock %}
+{% block content %}
+<style>
+  .profile-avatar {
+    width: 100px;
+  }
+</style>
+<main role="main">
+  <div class="container mb-4">
+    <h2>Perfiles</h2>
+    <div class="row mt-3">
+      {% for profile in profile_list %}
+        <div class=" col-sm-2 col-md-4">
+          {% if profile.avatar %}
+            <img src="{{profile.avatar.url}}" class="img-fluid profile-avatar">
+          {% else %}
+            <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid profile-avatar">
+          {% endif %}
+          <p>
+            <b>{{profile.user|truncatechars:"16"}}</b><br>
+            <a href="{% url 'profiles:detail' profile.user %}">Ver perfil</a>
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+{% endblock %}

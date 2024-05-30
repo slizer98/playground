@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{profiles.title}}{% endblock %}
+{% block content %}
+<style>
+  .profile-avatar {
+    width: 200px;
+  }
+</style>
+<main role="main">
+  <div class="container">
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-4 mx-auto">
+            {% if profile.avatar %}
+              <img src="{{profile.avatar.url}}" class="img-fluid profile-avatar">
+            {% else %}
+              <img src="{% static 'registration/img/no-avatar.jpg' %}" class="img-fluid profile-avatar">
+            {% endif %}
+        </div>
+        <div class="col-8 mt-4">
+          <h2>{{profile.user}}</h2>
+          
+          {% if profile.bio %}
+            <p>{{ profile.bio}}</p>
+          {% else %}
+            <p>Aún no tiene bio</p>
+
+          {% endif %}
+          {% if profile.link %}
+            <p>{{ profile.link}}</p>
+          {% else %}
+            <p>Aún no tiene link</p>
+
+          {% endif %}
+            
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}
